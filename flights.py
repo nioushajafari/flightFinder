@@ -48,8 +48,8 @@ def cheapest_option(origin, destination, outbound_date, inbound_partial_date):
         return sys.maxsize
 
     min_price = dic['Quotes'][0]['MinPrice']
-    pp.pprint("Cheapest option from " + origin + " to " +
-              destination + " is: " + str(min_price))
+    print("Cheapest option from " + origin + " to " +
+          destination + " is: " + str(min_price))
     return min_price
 
 
@@ -58,13 +58,13 @@ def find_cheapest_destination(origins, outbound_date, inbound_partial_date):
     global cheapest_destination
     total_cost = 0
     total_destination_cost = sys.maxsize  # Trying to improve this
-    destinations_to_cost = {} # map of destination and total cost
+    destinations_to_cost = {}  # map of destination and total cost
 
     # Iterate over popular airport destinations
     for destination in list_of_destinations():
         # Check cost from given origin
         for key in origins:
-            total_cost += (origins.get(key) * cheapest_option(key, destination, inbound_partial_date, outbound_date))
+            total_cost += (origins.get(key) * cheapest_option(key, destination, outbound_date, inbound_partial_date))
         destinations_to_cost[str(destination)] = total_cost
 
         # Update cheapest option
@@ -78,13 +78,13 @@ def find_cheapest_destination(origins, outbound_date, inbound_partial_date):
           + " with total cost of " + str(total_destination_cost))
 
     sorted_dest = sorted(destinations_to_cost.items(), key=lambda kv: kv[1])
-    for dest in range(3):
+    for dest in range(5):
         print(sorted_dest.__getitem__(dest))
 
 
 def main():
-    origins = {"BOS": 1, "JFK": 2, "SEA": 1}
-    find_cheapest_destination(origins, "2019-05-06", "2019-05-17")
+    origins = {"BOS": 1, "LAX": 1}
+    find_cheapest_destination(origins, "2019-06-27", "2019-07-03")
 
 
 main()
