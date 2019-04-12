@@ -1,4 +1,3 @@
-import unirest
 import pprint
 import sys
 from secrets import *
@@ -87,4 +86,5 @@ def main():
     find_cheapest_destination(origins, "2019-06-27", "2019-07-03")
 
 
-main()
+def doSomething(params):
+    return params
