@@ -1,4 +1,3 @@
-import unirest
 import pprint
 import sys
 from selenium import webdriver
@@ -117,4 +116,5 @@ def main():
     # make_request_try()
 
 
-main()
+def doSomething(params):
+    return params
